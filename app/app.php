@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 // Your Code
 
-function getTransactionFile(string $filepath): array{
+function getTransactionFiles(string $filepath): array{
     $files = [];
 
     foreach(scandir($filepath) as $file){
@@ -14,4 +14,18 @@ function getTransactionFile(string $filepath): array{
         $files[] = $filepath . $file; 
     }
     return $files;
+}
+
+function getTransactions(string $fileName) : array {
+    if(! file_exists($fileName)){
+        trigger_error('FILE "'.$fileName.'" doest exits.',E_USER_ERROR);
+    }
+
+    $file = fopen($fileName,'r');
+    $transactions = [];
+    
+    while(($transacton = fgetcsv($file)) !== false){
+        $transactions[] = $transacton;
+    }
+    return $transactions;
 }
