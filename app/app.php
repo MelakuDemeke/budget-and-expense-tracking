@@ -24,9 +24,22 @@ function getTransactions(string $fileName) : array {
     $file = fopen($fileName,'r');
     $transactions = [];
     fgetcsv($file);
-    
+
     while(($transacton = fgetcsv($file)) !== false){
-        $transactions[] = $transacton;
+        $transactions[] = extractTransaction($transacton);
     }
     return $transactions;
+}
+
+function extractTransaction(array $transactionRow): array{
+    [$date,$checkNumber,$description,$amount] = $transactionRow;
+
+    $amount = (float)str_replace(['$',','],'',$amount);
+
+    return [
+        'date' => $date,
+        'checkNumber' => $checkNumber,
+        'description' => $description,
+        'amount' => $amount,
+    ];
 }

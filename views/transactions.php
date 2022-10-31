@@ -37,10 +37,10 @@
                 <?php if (!empty($tranactions)): ?>
                     <?php foreach($tranactions as $tranaction): ?>
                         <tr>
-                            <td><?= $tranaction[0] ?></td>
-                            <td><?= $tranaction[1]?></td>
-                            <td><?= $tranaction[2] ?></td>
-                            <td><?= $tranaction[3] ?></td>
+                            <td><?= $tranaction['date'] ?></td>
+                            <td><?= $tranaction['checkNumber']?></td>
+                            <td><?= $tranaction['description'] ?></td>
+                            <td><?= $tranaction['amount'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 <?php endif ?>
