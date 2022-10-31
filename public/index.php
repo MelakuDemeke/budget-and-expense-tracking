@@ -20,5 +20,4 @@ foreach($files as $file){
 }
 
 
-print_r($tranactions);
-
+require VIEWS_PATH . 'transactions.php';
