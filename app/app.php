@@ -50,7 +50,7 @@ function calculateTotals(array $transactions): array{
         $totals['netTotal'] += $transaction['amount'];
         
         if($transaction['amount'] >= 0){
-            $totals['netIncome'] += $transaction['amount'];
+            $totals['totalIncome'] += $transaction['amount'];
         }else{
             $totals['totalExpense'] += $transaction['amount'];
         }
