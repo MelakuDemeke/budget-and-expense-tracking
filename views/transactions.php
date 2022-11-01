@@ -37,10 +37,22 @@
                 <?php if (!empty($tranactions)): ?>
                     <?php foreach($tranactions as $tranaction): ?>
                         <tr>
-                            <td><?= $tranaction['date'] ?></td>
+                            <td><?= formatDate($tranaction['date']) ?></td>
                             <td><?= $tranaction['checkNumber']?></td>
                             <td><?= $tranaction['description'] ?></td>
-                            <td><?= formatDollarAmount($tranaction['amount']) ?></td>
+                            <td>
+                                <?php if($tranaction['amount'] < 0): ?>
+                                    <span style="color:red">
+                                        <?= formatDollarAmount($tranaction['amount']) ?>
+                                    </span>
+                                <?php elseif($tranaction['amount'] > 0): ?>
+                                    <span style="color:green">
+                                        <?= formatDollarAmount($tranaction['amount']) ?>
+                                    </span>
+                                <?php else: ?>
+                                    <?= formatDollarAmount($tranaction['amount']) ?>
+                                <?php endif ?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 <?php endif ?>
